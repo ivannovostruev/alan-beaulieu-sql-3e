@@ -224,10 +224,58 @@ FROM customer c
 WHERE DATE(r.rental_date) = '2005-06-14'
 ORDER BY 3 DESC;
 
+-- exercise 3.1
+-- 200 rows retrieved
+SELECT actor_id,
+       first_name,
+       last_name
+FROM actor
+ORDER BY last_name, first_name;
 
+-- альтернативное решение
+-- 200 rows retrieved
+SELECT actor_id,
+       first_name,
+       last_name
+FROM actor
+ORDER BY 3, 2;
 
+-- exercise 3.2
+-- 6 rows retrieved
+SELECT actor_id,
+       first_name,
+       last_name
+FROM actor
+WHERE last_name = 'WILLIAMS' OR last_name = 'DAVIS';
 
+-- альтернативное решение
+-- 6 rows retrieved
+SELECT actor_id,
+       first_name,
+       last_name
+FROM actor
+WHERE last_name IN ('WILLIAMS', 'DAVIS');
 
+-- exercise 3.3
+-- 27 rows retrieved
+SELECT DISTINCT customer_id
+FROM rental
+WHERE DATE(rental_date) = '2005-07-05';
 
+-- exercise 3.4
+SELECT c.email,
+       r.return_date
+FROM customer c
+    INNER JOIN rental r
+        ON r.customer_id = c.customer_id
+WHERE DATE(r.rental_date) = '2005-06-14'
+ORDER BY r.return_date DESC;
 
-
+-- альтернативное решение
+SELECT c.email,
+       r.return_date
+FROM customer c
+         INNER JOIN rental r
+                    ON r.customer_id = c.customer_id
+WHERE DATE(r.rental_date) = '2005-06-14'
+ORDER BY 2 DESC;
