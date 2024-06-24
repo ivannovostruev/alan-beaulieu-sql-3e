@@ -179,19 +179,21 @@ FROM rental
 WHERE return_date IS NULL
     OR return_date NOT BETWEEN '2005-05-01' AND '2005-09-01';
 
+-- exercise 4.1
+-- payment_id: 101, 107
 
+-- exercise 4.2
+-- payment_id: 108, 110, 111, 112, 113, 115, 116, 117, 118, 119, 120
 
+-- exercise 4.3
+-- 7 rows retrieved
+SELECT *
+FROM payment
+WHERE amount IN (1.98, 7.98, 9.98)
+ORDER BY amount;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- exercise 4.4
+-- 9 rows retrieved
+SELECT *
+FROM customer
+WHERE last_name LIKE '_A%W%';
