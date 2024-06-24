@@ -275,7 +275,7 @@ ORDER BY r.return_date DESC;
 SELECT c.email,
        r.return_date
 FROM customer c
-         INNER JOIN rental r
-                    ON r.customer_id = c.customer_id
+    INNER JOIN rental r
+        ON r.customer_id = c.customer_id
 WHERE DATE(r.rental_date) = '2005-06-14'
 ORDER BY 2 DESC;
