@@ -48,6 +48,7 @@ FROM film_actor
 ORDER BY actor_id;
 
 -- page 76-77
+-- использование производной таблицы в предложении FROM
 SELECT CONCAT(cust.last_name, ', ', cust.first_name) full_name
 FROM (SELECT first_name, last_name, email
       FROM customer
@@ -197,8 +198,8 @@ SELECT c.first_name,
        c.last_name,
        TIME(r.rental_date) rental_time
 FROM customer c
-         INNER JOIN rental r
-                    ON r.customer_id = c.customer_id
+    INNER JOIN rental r
+        ON r.customer_id = c.customer_id
 WHERE DATE(r.rental_date) = '2005-06-14'
 ORDER BY c.first_name, c.last_name;
 
