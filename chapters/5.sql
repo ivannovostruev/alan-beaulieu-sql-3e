@@ -407,3 +407,21 @@ FROM (SELECT a1.address_id,
 WHERE addr1.city_id = addr2.city_id
     AND addr1.address_id <> addr2.address_id
 ORDER BY addr1.city_id;
+
+-- более продвинутое решение, которое удаляет перекрёстные дубликаты
+SELECT a1.address addr1,
+       a2.address addr2,
+       a1.city_id
+FROM address a1
+    INNER JOIN address a2
+WHERE a1.city_id = a2.city_id
+    AND a1.address_id <> a2.address_id
+    -- находим первенца из дубликатов, который войдёт в результирующий набор
+    -- с помощью итоговой функции MIN()
+    AND a1.address_id IN (SELECT MIN(a1.address_id)
+                          FROM address a1
+                              INNER JOIN address a2
+                          WHERE a1.city_id = a2.city_id
+                              AND a1.address_id <> a2.address_id
+                          GROUP BY a1.city_id)
+ORDER BY a1.city_id;
