@@ -66,6 +66,7 @@ CREATE TEMPORARY TABLE actors_j
     last_name   VARCHAR(45)
 );
 
+-- использование инструкции INSERT SELECT
 INSERT INTO actors_j
 SELECT actor_id,
        first_name,
