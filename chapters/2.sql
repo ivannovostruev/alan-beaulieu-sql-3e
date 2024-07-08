@@ -83,8 +83,10 @@ CREATE TABLE favorite_food
 -- Решение ошибки: [HY000][1833] Cannot change column 'person_id': used in a foreign key constraint 'fk_fav_food_person_id' of table 'sakila.favorite_food'
 -- https://stackoverflow.com/questions/13606469/cannot-change-column-used-in-a-foreign-key-constraint
 SET FOREIGN_KEY_CHECKS = 0;
+
 ALTER TABLE person
 MODIFY person_id SMALLINT UNSIGNED AUTO_INCREMENT;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO person (person_id,
